@@ -1,0 +1,40 @@
+<!-- Navbar -->
+<nav class="sticky top-0 z-50 bg-transparent pt-2 w-screen backdrop-blur-[2px] flex md:block items-baseline">
+  <!-- TODO: responsive width -->
+  <div class="w-[92%] ml-[4%] mr-[4%] mx-auto border border-red-500">
+    <div class="flex justify-between items-baseline font-[Faster-One] text-3-5xl text-white">
+      <!-- Primary nav -->
+      <div class="hidden md:flex hover:text-stone-200">
+        <!--  -->
+        <a>
+          {{ menuItems[1].title }}
+        </a>
+      </div>
+
+      <!-- logo -->
+      <!-- TODO: center logo mobile view -->
+      <div class="flex  md:ml-0">
+        <img srcset="./assets/logo/goParkLogo.svg" alt="GoPark logo" class="w-64"/>
+      </div>
+
+      <!-- Secondary nav -->
+      <div class="hidden md:flex hover:text-stone-200">
+        <a>
+          {{ menuItems[2].title }}
+        </a>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- mobile menu -->
+  <div class="md:hidden flex items-center text-white hover:text-gray-400 px-2">
+    <button (click)="toggleMobileMenu()">
+      <svg class="w-6 h-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 5.25h16.5m-16.5 4.5h16.5m-16.5 4.5h16.5m-16.5 4.5h16.5" />
+      </svg>
+    </button>
+  </div>
+
+</nav>
+
