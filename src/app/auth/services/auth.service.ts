@@ -1,8 +1,8 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import { catchError, map, Observable, of, Subject, takeUntil, tap } from 'rxjs';
-import { Token, User } from '../../shared/interfaces';
+import { catchError, firstValueFrom, map, Observable, of, Subject, takeUntil, tap } from 'rxjs';
+import { Auth, Token, User } from '../../shared/interfaces';
 import { environments } from '../../../environments/environments';
 
 @Injectable({
@@ -13,15 +13,19 @@ export class AuthService {
 
   private unsubscribe$ = new Subject<void>();
 
-  constructor(
-    private http: HttpClient,
-    private router: Router
-  ) {}
+  constructor(private http: HttpClient, private router: Router) {}
 
   private get userToken(): string {
     if (!localStorage.getItem('auth_token')) return '';
     const token: Token = JSON.parse(localStorage.getItem('auth_token')!);
     return token.accessToken;
+  }
+
+  get currentUser(): User | null {
+    if (!localStorage.getItem('auth_token')) return null;
+    if (!localStorage.getItem('current_user')) return null;
+    const currentUser: User = JSON.parse(localStorage.getItem('current_user')!);
+    return currentUser;
   }
 
   private get authHeader(): HttpHeaders {
@@ -37,27 +41,29 @@ export class AuthService {
   }
 
   loginUser(user: Partial<User>): Observable<boolean> {
-    return this.http.post<boolean>(`${this.baseUrl}/authenticate`, user).pipe(
-      tap((token) => {
-        localStorage.setItem('auth_token', JSON.stringify(token));
-        if (user.email) {
-          localStorage.setItem('current_user', JSON.stringify(user));
-        }
+    return this.http.post<Auth>(`${this.baseUrl}/authenticate`, user).pipe(
+      tap((resp: Auth) => {
+        localStorage.setItem('auth_token', JSON.stringify(resp.accessToken));
+        localStorage.setItem('current_user', JSON.stringify(resp.user));
       }),
       map((resp) => true),
       catchError((err) => of(false))
     );
   }
 
-  get currentUser(): User | null {
-    if (!localStorage.getItem('auth_token')) return null;
-    const currentUser: User = JSON.parse(localStorage.getItem('current_user')!);
-    return currentUser;
-  }
+  async isAdminAuthenticated(): Promise<boolean> {
+    const user: User | null = this.currentUser;
+    if (!user) return false;
 
-  authStatus(): boolean {
-    if (!localStorage.getItem('auth_token')) return false;
-    return true;
+    try {
+      const responseUser: User | undefined = await firstValueFrom(
+        this.http.get<User>(`${this.baseUrl}/users/${user.id}`)
+      );
+
+      return !!responseUser && responseUser.role === 1; // 1 is the admin role
+    } catch (error) {
+      return false;
+    }
   }
 
   logOut() {

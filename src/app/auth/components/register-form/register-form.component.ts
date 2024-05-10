@@ -6,10 +6,10 @@ import { Router } from '@angular/router';
 import { User } from '../../../shared/interfaces';
 
 @Component({
-  selector: 'app-register-page',
-  templateUrl: './register-page.component.html',
+  selector: 'auth-register-form',
+  templateUrl: './register-form.component.html',
 })
-export class RegisterPageComponent implements OnDestroy {
+export class RegisterFormComponent implements OnDestroy {
   public showDialog: boolean = false;
   public dialogMessage = {
     title: 'Error',
