@@ -3,13 +3,15 @@ import { CommonModule } from '@angular/common';
 import { NavBarComponent } from './components/nav-bar/nav-bar.component';
 import { HomePageComponent } from './pages/home-page/home-page.component';
 import { RouterModule } from '@angular/router';
+import { ModalDialogComponent } from './components/modal-dialog/modal-dialog.component';
 
 
 
 @NgModule({
   declarations: [
     NavBarComponent,
-    HomePageComponent
+    HomePageComponent,
+    ModalDialogComponent
   ],
   imports: [
     CommonModule,
@@ -17,7 +19,7 @@ import { RouterModule } from '@angular/router';
   ],
   exports: [
     HomePageComponent,
-
+    ModalDialogComponent,
   ]
 })
 export class SharedModule { }
