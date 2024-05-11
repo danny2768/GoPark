@@ -9,7 +9,7 @@
       @for (item of sidebarItems; track $index) {
         @if (item.isActive) {
           <div
-          class="flex items-center p-3 hover:bg-gray-200 cursor-pointer mt-3 rounded-r-3xl"
+          class="flex items-center justify-center p-3 hover:bg-gray-200 cursor-pointer mt-3 rounded-r-3xl"
           [routerLink]="item.route"
           routerLinkActive="bg-gray-200"
         >
@@ -27,7 +27,7 @@
 
   <div class="pb-5">
     <div
-      class="flex items-center p-3 hover:bg-gray-200 cursor-pointer rounded-r-3xl"
+      class="flex items-center justify-center p-3 hover:bg-gray-200 cursor-pointer rounded-r-3xl"
       (click)="logout()"
     >
       <div class="w-10 h-5 flex items-center justify-center">
