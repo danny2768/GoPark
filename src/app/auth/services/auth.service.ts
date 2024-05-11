@@ -21,7 +21,7 @@ export class AuthService {
     return token.accessToken;
   }
 
-  get currentUser(): User | null {
+  currentUser(): User | null {
     if (!localStorage.getItem('auth_token')) return null;
     if (!localStorage.getItem('current_user')) return null;
     const currentUser: User = JSON.parse(localStorage.getItem('current_user')!);
@@ -51,19 +51,20 @@ export class AuthService {
     );
   }
 
-  async isAdminAuthenticated(): Promise<boolean> {
-    const user: User | null = this.currentUser;
+  isAdminAuthenticated(): boolean {
+    const user: User | null = this.currentUser();
     if (!user) return false;
+    return true;
+    // try {
+    //   const responseUser: User | undefined = await firstValueFrom(
+    //     this.http.get<User>(`${this.baseUrl}/api/users/${user.id}`)
+    //   );
 
-    try {
-      const responseUser: User | undefined = await firstValueFrom(
-        this.http.get<User>(`${this.baseUrl}/users/${user.id}`)
-      );
-
-      return !!responseUser && responseUser.role === 1; // 1 is the admin role
-    } catch (error) {
-      return false;
-    }
+    //   if (responseUser && responseUser.role === 1) return true  // 1 is the admin role
+    //   return false;
+    // } catch (error) {
+    //   return false;
+    // }
   }
 
   logOut() {

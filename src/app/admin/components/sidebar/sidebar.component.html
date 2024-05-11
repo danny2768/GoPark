@@ -1,0 +1,41 @@
+<div class="h-screen w-full bg-gray-100 shadow-xl flex flex-col justify-between rounded-r-2xl">
+  <div class="flex-grow">
+    <!-- logo -->
+    <div class="px-1 py-5">
+      <img src="/assets/logo/GPlogo.svg" alt="GoPark logo" />
+    </div>
+    <!-- items -->
+    <div class="">
+      @for (item of sidebarItems; track $index) {
+        @if (item.isActive) {
+          <div
+          class="flex items-center p-3 hover:bg-gray-200 cursor-pointer mt-3 rounded-r-3xl"
+          [routerLink]="item.route"
+          routerLinkActive="bg-gray-200"
+        >
+          <div class="w-10 h-5 flex items-center justify-center">
+            <img src="{{ item.icon }}" alt="{{ item.name }}" class="w-6" />
+          </div>
+          <!-- <div class="ml-4">
+              <p class="text-sm font-semibold">{{ item.name }}</p>
+            </div> -->
+        </div>
+        }
+      }
+    </div>
+  </div>
+
+  <div class="pb-5">
+    <div
+      class="flex items-center p-3 hover:bg-gray-200 cursor-pointer rounded-r-3xl"
+      (click)="logout()"
+    >
+      <div class="w-10 h-5 flex items-center justify-center">
+        <img src="assets/icons/logout.svg" alt="logout" class="w-6" />
+      </div>
+      <!-- <div class="ml-4">
+      <p class="text-sm font-semibold">Logout</p>
+    </div> -->
+    </div>
+  </div>
+</div>
