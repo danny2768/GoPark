@@ -15,7 +15,7 @@ export class UsersComponent implements OnInit, OnDestroy{
 
   public users?: User[];
   public orderby: keyof User | 'admin' |'' = '';
-
+  public searchText: string = '';
 
   public showDialog: boolean = false;
   public dialogMessage = {

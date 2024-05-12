@@ -9,23 +9,27 @@ import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { ParkingComponent } from './pages/parking/parking.component';
 import { SharedModule } from '../shared/shared.module';
 import { SortByPipe } from './pipes/sort-by.pipe';
+import { SearchPipe } from './pipes/search.pipe';
+import { FormsModule } from '@angular/forms';
 
 
 @NgModule({
   declarations: [
     // Pipes
     SortByPipe,
+    SearchPipe,
 
     DashboardComponent,
     UsersComponent,
     LayoutPageComponent,
     SidebarComponent,
-    ParkingComponent
+    ParkingComponent,
   ],
   imports: [
     CommonModule,
     AdminRoutingModule,
-    SharedModule
+    SharedModule,
+    FormsModule,
   ]
 })
 export class AdminModule { }
