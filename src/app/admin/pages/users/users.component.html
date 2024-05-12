@@ -5,7 +5,7 @@
   @if (showFormDialog) {
     <admin-form-modal [title]="formDialogInfo.title" [action]="formDialogInfo.action" [userId]="userid" (closeEvent)="onFormDialogClose()"></admin-form-modal>
   }
-  <div class="mt-8 mx-8 md:mx-4 sm:mx-2">
+  <div class="my-8 mx-8 md:mx-4 sm:mx-2">
     <!-- header -->
     <div class="flex flex-col sm:flex-row justify-between items-start">
       <!-- title -->
@@ -36,11 +36,11 @@
     <div class="">
       <div class="flex flex-col sm:flex-row justify-between items-center mt-4">
         <!-- Filters -->
-        <div class="w-full sm:w-1/4 flex gap-2">
+        <div class="w-full sm:w-2/4 flex flex-wrap gap-2">
           <div class="flex items-center text-gray-500">Sort by: </div>
-            <button class="bg-gray-800 hover:bg-gray-600 focus:bg-gray-600 text-white text-sm font-bold py-2 px-4 rounded-full" (click)="changeOrder('id')">Id</button>
-            <button class="bg-gray-800 hover:bg-gray-600 focus:bg-gray-600 text-white text-sm font-bold py-2 px-4 rounded-full" (click)="changeOrder('name')">Name</button>
-            <button class="bg-gray-800 hover:bg-gray-600 focus:bg-gray-600 text-white text-sm font-bold py-2 px-4 rounded-full" (click)="changeOrder('email')">Email</button>
+          <button class="bg-gray-800 hover:bg-gray-600 focus:bg-gray-600 text-white text-sm font-bold py-2 px-4 rounded-full" (click)="changeOrder('id')">Id</button>
+          <button class="bg-gray-800 hover:bg-gray-600 focus:bg-gray-600 text-white text-sm font-bold py-2 px-4 rounded-full" (click)="changeOrder('name')">Name</button>
+          <button class="bg-gray-800 hover:bg-gray-600 focus:bg-gray-600 text-white text-sm font-bold py-2 px-4 rounded-full" (click)="changeOrder('email')">Email</button>
         </div>
         <!-- Search -->
         <div class="w-full sm:w-2/4 mt-4 sm:mt-0">
@@ -54,7 +54,7 @@
       </div>
       <hr class="my-4"/>
       <!-- Table -->
-      <div class="overflow-x-auto">
+      <div class="overflow-auto">
         <table class="min-w-full table-auto">
           <thead>
             <tr class="text-left md:text-center">
