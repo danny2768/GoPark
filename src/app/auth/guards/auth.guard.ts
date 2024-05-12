@@ -6,11 +6,10 @@ export const authGuard: CanActivateFn = (route, state) => {
   const router = inject(Router);
   const authService = inject(AuthService);
 
-  // TODO: Activate this guard when finished admin panel
-  // if ( authService.isAdminAuthenticated() === false ) {
-  //   router.navigateByUrl('/auth/login')
-  //   return false;
-  // }
+  if ( authService.isAdminAuthenticated() === false ) {
+    router.navigateByUrl('/auth/login')
+    return false;
+  }
 
   return true;
 };

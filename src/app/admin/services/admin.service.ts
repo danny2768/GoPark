@@ -28,6 +28,20 @@ export class AdminService {
     return this.http.get<User>(`${this.baseUrl}/api/users/${id}`)
   }
 
+  createUser( user: User ): Observable<boolean> {
+    return this.http.post<User>(`${this.baseUrl}/api/users`, user).pipe(
+      map( resp => true ),
+      catchError( err => of(false) ),
+    );
+  }
+
+  updateUser( user: User ): Observable<boolean> {
+    return this.http.put<User>(`${this.baseUrl}/api/users/${user.id}`, user).pipe(
+      map( resp => true ),
+      catchError( err => of(false) ),
+    );
+  }
+
   deleteUserById( id: string): Observable<boolean> {
     return this.http.delete(`${this.baseUrl}/api/users/${id}`)
       .pipe(

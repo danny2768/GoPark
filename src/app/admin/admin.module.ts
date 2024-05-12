@@ -10,7 +10,8 @@ import { ParkingComponent } from './pages/parking/parking.component';
 import { SharedModule } from '../shared/shared.module';
 import { SortByPipe } from './pipes/sort-by.pipe';
 import { SearchPipe } from './pipes/search.pipe';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { UserFormModalComponent } from './components/form-modal/user-form-modal.component';
 
 
 @NgModule({
@@ -24,12 +25,14 @@ import { FormsModule } from '@angular/forms';
     LayoutPageComponent,
     SidebarComponent,
     ParkingComponent,
+    UserFormModalComponent,
   ],
   imports: [
     CommonModule,
     AdminRoutingModule,
     SharedModule,
     FormsModule,
+    ReactiveFormsModule,
   ]
 })
 export class AdminModule { }

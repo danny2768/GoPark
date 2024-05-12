@@ -2,6 +2,9 @@
   @if (showDialog) {
     <shared-modal-dialog [title]="dialogMessage.title" [description]="dialogMessage.description" (closeEvent)="onDialogClose()"></shared-modal-dialog>
   }
+  @if (showFormDialog) {
+    <admin-form-modal [title]="formDialogInfo.title" [action]="formDialogInfo.action" [userId]="userid" (closeEvent)="onFormDialogClose()"></admin-form-modal>
+  }
   <div class="mt-8 mx-8 md:mx-4 sm:mx-2">
     <!-- header -->
     <div class="flex flex-col sm:flex-row justify-between items-start">
@@ -13,10 +16,9 @@
 
       <!-- Action buttons -->
       <div class="flex gap-2 mt-2 sm:mt-0">
-        <!-- TODO: Add logic & implement add user -->
         <button
           class="bg-[#39e554] hover:bg-[#33cc4b] text-white text-sm font-bold py-2 px-4 rounded"
-
+          (click)="displayFormDialog('create')"
         >
           Add User
         </button>
@@ -72,11 +74,16 @@
               <td class="px-4 py-1">{{ user.surname }}</td>
               <td class="px-4 py-1">{{ user.email }}</td>
               <td class="px-4 py-1">{{ user.documentNumber }}</td>
-              <td class="px-4 py-1">{{ user.role }}</td>
+              <!-- TODO: Create a pipe to handle this -->
+              @if (user.role === 1) {
+                <td class="px-4 py-1">admin</td>
+              } @else {
+                <td class="px-4 py-1">{{ user.role }}</td>
+              }
               <td class="px-4 py-1">
-                <!-- TODO: Add logic & implement edit button -->
                 <button
                   class="bg-[#39e554] hover:bg-[#33cc4b] text-white font-bold py-1 px-4 rounded"
+                  (click)="displayFormDialog('update', user.id.toString())"
                 >
                   Edit
                 </button>

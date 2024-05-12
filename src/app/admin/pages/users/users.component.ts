@@ -3,6 +3,11 @@ import { AdminService } from '../../services/admin.service';
 import { Subscription } from 'rxjs';
 import { User } from '../../../shared/interfaces';
 
+interface FormDialogInfo {
+  title: string;
+  action: 'create' | 'update';
+}
+
 @Component({
   selector: 'admin-users',
   templateUrl: './users.component.html',
@@ -17,6 +22,13 @@ export class UsersComponent implements OnInit, OnDestroy{
   public orderby: keyof User | 'admin' |'' = '';
   public searchText: string = '';
 
+  public showFormDialog: boolean = false;
+  public formDialogInfo: FormDialogInfo = {
+    title: 'Create user',
+    action: 'create',
+  };
+  public userid?: string;
+
   public showDialog: boolean = false;
   public dialogMessage = {
     title: 'Error',
@@ -29,6 +41,20 @@ export class UsersComponent implements OnInit, OnDestroy{
 
   ngOnInit(): void {
     this.getUsers();
+  }
+
+  createUser(): void {
+    this.displayFormDialog('create');
+  }
+
+  displayFormDialog( action: 'create' | 'update', userId?: string ): void {
+    if (action === 'update') {
+      this.formDialogInfo.title = `Update user`;
+      this.userid = userId;
+    } else { this.formDialogInfo.title = `Create user`;}
+
+    this.formDialogInfo.action = action;
+    this.showFormDialog = true;
   }
 
   getUsers(): void {
@@ -97,6 +123,11 @@ export class UsersComponent implements OnInit, OnDestroy{
     this.showDialog = false;
     // this.router.navigate(['./auth/login']);
 
+  }
+
+  onFormDialogClose(): void {
+    this.showFormDialog = false;
+    this.getUsers();
   }
 
   changeOrder( value: keyof User | 'admin' ){
