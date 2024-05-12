@@ -46,10 +46,27 @@ export class AuthInterceptor implements HttpInterceptor {
 
     return next.handle(authReq).pipe(
       catchError((err: HttpErrorResponse) => {
-        if (err.status === 403) {
-          this.router.navigateByUrl('/login');
+        let errorData = { status: err.status, message: '' };
+        if (err.error instanceof ErrorEvent) {
+          // client-side error
+          errorData.message = `Error: ${err.error.message}`;
+        } else {
+          // server-side error
+          switch (err.status) {
+            case 403:
+              this.router.navigateByUrl('/auth/login');
+              break;
+            case 404:
+              errorData.message = 'Not Found';
+              break;
+            case 500:
+              errorData.message = 'Internal Server Error';
+              break;
+            default:
+              errorData.message = `Error Code: ${err.status}\nMessage: ${err.message}`;
+          }
         }
-        return throwError(err);
+        return throwError(errorData);
       })
     );
   }

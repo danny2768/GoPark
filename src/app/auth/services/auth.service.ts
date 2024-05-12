@@ -54,6 +54,7 @@ export class AuthService {
   isAdminAuthenticated(): boolean {
     const user: User | null = this.currentUser();
     if (!user) return false;
+    if (user.role != 1) return false;
     return true;
     // try {
     //   const responseUser: User | undefined = await firstValueFrom(

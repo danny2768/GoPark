@@ -7,10 +7,15 @@ import { UsersComponent } from './pages/users/users.component';
 import { LayoutPageComponent } from './layout/layout-page/layout-page.component';
 import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { ParkingComponent } from './pages/parking/parking.component';
+import { SharedModule } from '../shared/shared.module';
+import { SortByPipe } from './pipes/sort-by.pipe';
 
 
 @NgModule({
   declarations: [
+    // Pipes
+    SortByPipe,
+
     DashboardComponent,
     UsersComponent,
     LayoutPageComponent,
@@ -19,7 +24,8 @@ import { ParkingComponent } from './pages/parking/parking.component';
   ],
   imports: [
     CommonModule,
-    AdminRoutingModule
+    AdminRoutingModule,
+    SharedModule
   ]
 })
 export class AdminModule { }
