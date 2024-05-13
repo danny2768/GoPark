@@ -12,6 +12,7 @@ import { SortByPipe } from './pipes/sort-by.pipe';
 import { SearchPipe } from './pipes/search.pipe';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { UserFormModalComponent } from './components/form-modal/user-form-modal.component';
+import { AdminIdtoNamePipe } from './pipes/adminIdtoName.pipe';
 
 
 @NgModule({
@@ -19,6 +20,7 @@ import { UserFormModalComponent } from './components/form-modal/user-form-modal.
     // Pipes
     SortByPipe,
     SearchPipe,
+    AdminIdtoNamePipe,
 
     DashboardComponent,
     UsersComponent,
