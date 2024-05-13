@@ -11,6 +11,7 @@ export class SearchPipe implements PipeTransform {
       return users;
     }
     return users.filter(user =>
+      user.id.toString().includes(searchText) ||
       user.name.toLowerCase().includes(searchText.toLowerCase()) ||
       user.surname.toLowerCase().includes(searchText.toLowerCase()) ||
       user.email.toLowerCase().includes(searchText.toLowerCase()) ||
