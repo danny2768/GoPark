@@ -13,6 +13,7 @@ import { SearchPipe } from './pipes/search.pipe';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { UserFormModalComponent } from './components/form-modal/user-form-modal.component';
 import { AdminIdtoNamePipe } from './pipes/adminIdtoName.pipe';
+import { ParkingFormModalComponent } from './components/parking-form-modal/parking-form-modal.component';
 
 
 @NgModule({
@@ -28,6 +29,7 @@ import { AdminIdtoNamePipe } from './pipes/adminIdtoName.pipe';
     SidebarComponent,
     ParkingComponent,
     UserFormModalComponent,
+    ParkingFormModalComponent,
   ],
   imports: [
     CommonModule,

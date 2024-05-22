@@ -3,6 +3,7 @@ import { environments } from '../../../environments/environments';
 import { HttpClient } from '@angular/common/http';
 import { Token, User } from '../../shared/interfaces';
 import { catchError, map, Observable, of } from 'rxjs';
+import { Parking } from '../interfaces/parking.interface';
 
 @Injectable({
   providedIn: 'root'
@@ -54,5 +55,35 @@ export class AdminService {
 
 
   // # Parking req
+
+  getParkings(): Observable<Parking[]> {
+    return this.http.get<Parking[]>(`${this.baseUrl}/api/parkings`);
+  }
+
+  getParkingById( id:string ): Observable<Parking> {
+    return this.http.get<Parking>(`${this.baseUrl}/api/parkings/${id}`);
+  }
+
+  createParking( parking: Parking ): Observable<boolean> {
+    return this.http.post<Parking>(`${this.baseUrl}/api/parkings`, parking).pipe(
+      map( resp => true ),
+      catchError( err => of(false) ),
+    );
+  }
+
+  updateParking( parking: Parking ): Observable<boolean> {
+    return this.http.put<Parking>(`${this.baseUrl}/api/parkings/${parking.id}`, parking).pipe(
+      map( resp => true ),
+      catchError( err => of(false) ),
+    );
+  }
+
+  deleteParkingById( id: string ): Observable<boolean> {
+    return this.http.delete(`${this.baseUrl}/api/parkings/${id}`)
+      .pipe(
+        map( resp => true ),
+        catchError( err => of(false) ),
+      );
+  }
 
 }

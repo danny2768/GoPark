@@ -1,1 +1,68 @@
-<p>parking works!</p>
+<div class="font-[Inter]">
+  @if (dialogInfo.show) {
+    <shared-modal-dialog [title]="dialogInfo.title" [description]="dialogInfo.description" (closeEvent)="onDialogClose()"></shared-modal-dialog>
+  }
+  @if (showFormDialog) {
+    <admin-parking-form-modal [parkingFormInfo]="parkingFormInfo" (closeEvent)="onFormDialogClose()"></admin-parking-form-modal>
+  }
+  <div class="my-8 mx-8 md:mx-4 sm:mx-2">
+    <!-- header -->
+    <div class="flex flex-col sm:flex-row justify-between items-start">
+      <!-- title -->
+      <div>
+        <h1 class="text-3xl font-bold text-gray-800">Parking Spaces</h1>
+        <p class="text-gray-500">Manage all parking spaces from one place.</p>
+      </div>
+
+      <!-- Action buttons -->
+      <div class="flex gap-2 mt-2 sm:mt-0">
+        <button
+          class="bg-[#39e554] hover:bg-[#33cc4b] text-white text-sm font-bold py-2 px-4 rounded"
+          (click)="displayFormDialog('create')"
+        >
+          Add Parking-Space
+        </button>
+        <button
+          class="bg-black hover:bg-gray-800 text-white text-sm font-bold py-2 px-4 rounded"
+          (click)="exportParkingsToCSV()"
+        >
+          Export to CSV +
+        </button>
+      </div>
+    </div>
+
+    <hr class="my-4"/>
+    <!-- Content -->
+    <div class="w-full">
+
+        <!-- Cards section -->
+        <div class="flex flex-wrap justify-center gap-8">
+          <!-- Card -->
+          @for (parking of parkings; track $index) {
+            <div class="bg-slate-50 rounded-lg p-4 md:p-6 shadow-lg text-center max-w-sm">
+              <h2 class="font-bold text-xl mb-2">Id: <span class="font-normal"> {{parking.id}} </span></h2>
+              <p class="text-gray-700">Location: <span class="font-semibold"> {{parking.location}} </span></p>
+              <p class="text-gray-700">Capacity: <span class="font-semibold"> {{parking.capacity}} </span></p>
+              <p class="text-gray-700">Available: <span class="font-semibold"> {{parking.available}} </span></p>
+              <!-- Action buttons -->
+              <!-- TODO: implement action buttons -->
+              <div class="flex gap-2 justify-center mt-4">
+                <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mb-2 md:mb-0">
+                  More Info
+                </button>
+                <button class="bg-[#39e554] hover:bg-[#33cc4b] text-white font-bold py-2 px-4 rounded mb-2 md:mb-0"
+                  (click)="displayFormDialog( 'update', parking.id.toString() )">
+                  Update
+                </button>
+                <button class="bg-[#FF4040] hover:bg-[#e53935] text-white font-bold py-2 px-4 rounded"
+                  (click)="deleteParking( parking.id.toString() )">
+                  Delete
+                </button>
+              </div>
+            </div>
+          }
+        </div>
+
+    </div>
+  </div>
+</div>
