@@ -82,36 +82,42 @@ export class UserFormModalComponent implements OnInit, OnDestroy{
     let user = this.myForm.value as User;
 
     if (this.action === 'create'){
-      this.subscription = this.adminService.createUser(user).subscribe({
+      this.subscription1 = this.adminService.createUser(user).subscribe({
         next: (resp) => {
-          this.dialogMessage.title = 'Success';
-          this.dialogMessage.description = 'User created successfully';
-          this.showForm = false;
+          if ( !resp ) {
+            this.showMessageInDialog('Error', 'An error occurred while creating the user.');
+            return false;
+          } else {
+            this.showMessageInDialog('Success', 'User created successfully');
+            return true;
+          }
         },
         error: (error) => {
-          console.error('Error al crear el usuario');
+          this.showMessageInDialog('Error', 'An error occurred while creating the user.');
         }
       });
     }
 
     if (this.action === 'update'){
-    if (this.user && this.user.id) {
-      user = { ...user, id: this.user.id }; // Add the id to the user object
-      this.subscription = this.adminService.updateUser(user).subscribe({
-        next: (resp) => {
-          this.dialogMessage.title = 'Success';
-          this.dialogMessage.description = 'User updated successfully';
-          this.showForm = false;
-        },
-        error: (error) => {
-          console.error('Error al actualizar el usuario');
-        }
-      });
+      if (this.user && this.user.id) {
+        user = { ...user, id: this.user.id }; // Add the id to the user object
+        this.subscription1 = this.adminService.updateUser(user).subscribe({
+          next: (resp) => {
+            this.showMessageInDialog('Success', 'User updated successfully');
+          },
+          error: (error) => {
+            this.showMessageInDialog('Error', 'An error occurred while updating the user.');
+          }
+        });
+      }
     }
+    return false;
   }
 
-
-    return false;
+  showMessageInDialog( title: string, message: string):void {
+    this.dialogMessage.title = title;
+    this.dialogMessage.description = message;
+    this.showForm = false;
   }
 
   getFirstWord(title: string): string {
