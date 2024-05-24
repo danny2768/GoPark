@@ -15,9 +15,9 @@ export class NavBarComponent {
   public showMobileMenu: boolean = false;
 
   public menuItems: MenuItems[] = [
-    {title: 'Home', url: 'home'},
-    {title: 'Pricing', url: 'pricing'},
-    {title: 'Contact Us', url: 'contact'},
+    {title: 'Home', url: '/home'},
+    {title: 'Pricing', url: '#Pricing'},
+    {title: 'Log In', url: '/auth/login'},
   ];
 
   toggleMobileMenu() {
