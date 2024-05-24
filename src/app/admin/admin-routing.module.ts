@@ -4,6 +4,7 @@ import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { UsersComponent } from './pages/users/users.component';
 import { LayoutPageComponent } from './layout/layout-page/layout-page.component';
 import { ParkingComponent } from './pages/parking/parking.component';
+import { ParkingSpotsComponent } from './pages/parking-spots/parking-spots.component';
 
 const routes: Routes = [
   {
@@ -13,6 +14,7 @@ const routes: Routes = [
       { path: 'dashboard', component: DashboardComponent },
       { path: 'users', component: UsersComponent},
       { path: 'parking', component: ParkingComponent},
+      { path: 'parking/:id', component: ParkingSpotsComponent},
       { path: '', redirectTo: 'dashboard', pathMatch: 'full' }
     ]
   }

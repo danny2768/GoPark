@@ -4,6 +4,7 @@ import { HttpClient } from '@angular/common/http';
 import { Token, User } from '../../shared/interfaces';
 import { catchError, map, Observable, of } from 'rxjs';
 import { Parking } from '../interfaces/parking.interface';
+import { Spot } from '../interfaces/spot.interface';
 
 @Injectable({
   providedIn: 'root'
@@ -80,6 +81,21 @@ export class AdminService {
 
   deleteParkingById( id: string ): Observable<boolean> {
     return this.http.delete(`${this.baseUrl}/api/parkings/${id}`)
+      .pipe(
+        map( resp => true ),
+        catchError( err => of(false) ),
+      );
+  }
+
+
+  // # Spots req
+
+  getSpotsByParkingId( id: string ): Observable<Spot[]> {
+    return this.http.get<Spot[]>(`${this.baseUrl}/api/spots/parking/${id}`);
+  }
+
+  deleteSpotById( id: string ): Observable<boolean>{
+    return this.http.delete(`${this.baseUrl}/api/spots/${id}`)
       .pipe(
         map( resp => true ),
         catchError( err => of(false) ),

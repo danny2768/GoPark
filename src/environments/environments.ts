@@ -1,8 +1,8 @@
 export const environments = {
   baseUrl: 'http://localhost:8080',
   vehicleTypes: {
-    23: 'Car',
-    24: 'Motorcycle',
+    19: 'Car',
+    25: 'Motorcycle',
   },
   roleTypes: {
     1: 'Admin',

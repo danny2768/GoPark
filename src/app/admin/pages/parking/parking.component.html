@@ -45,9 +45,9 @@
               <p class="text-gray-700">Capacity: <span class="font-semibold"> {{parking.capacity}} </span></p>
               <p class="text-gray-700">Available: <span class="font-semibold"> {{parking.available}} </span></p>
               <!-- Action buttons -->
-              <!-- TODO: implement action buttons -->
               <div class="flex gap-2 justify-center mt-4">
-                <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mb-2 md:mb-0">
+                <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mb-2 md:mb-0"
+                  [routerLink]="['/admin/parking/', parking.id]">
                   More Info
                 </button>
                 <button class="bg-[#39e554] hover:bg-[#33cc4b] text-white font-bold py-2 px-4 rounded mb-2 md:mb-0"
