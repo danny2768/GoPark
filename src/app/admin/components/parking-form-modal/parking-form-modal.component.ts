@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, OnDestroy, OnInit, Output } from '@angular/core';
-import { Parking } from '../../interfaces/parking.interface';
+import { Parking } from '../../../shared/interfaces/parking.interface';
 import { Subscription } from 'rxjs';
 import { AdminService } from '../../services/admin.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';

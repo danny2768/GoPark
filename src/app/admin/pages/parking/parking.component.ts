@@ -1,5 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { Parking } from '../../interfaces/parking.interface';
+import { Parking } from '../../../shared/interfaces/parking.interface';
 import { Subscription } from 'rxjs';
 import { AdminService } from '../../services/admin.service';
 import { ParkingForm } from '../../components/parking-form-modal/parking-form-modal.component';
