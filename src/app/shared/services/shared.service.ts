@@ -17,9 +17,7 @@ export class SharedService {
   ){}
 
   getParkings(): Observable<Parking[]> {
-    // TODO: update when backend is ready
-    return this.http.get<Parking[]>(`${this.baseUrl}/api/parkings`);
-    // return this.http.get<Parking[]>(`${this.baseUrl}/api/parkings`, { headers: this.headers });
+    return this.http.get<Parking[]>(`${this.baseUrl}/api/parkings`, { headers: this.headers });
   }
 
   getParkingById( id:string ): Observable<Parking> {
