@@ -8,15 +8,15 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 
 Before you begin, ensure you have met the following requirements:
 
-* You have installed the latest version of [Node.js and npm](https://nodejs.org/en/download/)
-* You have a `<Windows/Linux/Mac>` machine. State if OS matters.
+* You have installed at least version 20.11.0 of [Node.js and npm](https://nodejs.org/en/download/)
+
 
 ## Setting Up
 
 Clone the repository to your local machine:
 
 ```bash
-git clone <repository_url>
+git clone https://github.com/danny2768/GoPark.git
 ```
 
 Navigate to the project directory:
