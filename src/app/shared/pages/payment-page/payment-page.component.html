@@ -1,1 +1,192 @@
-<p>payment-page works!</p>
+<div class="background md:pt-3">
+  <div class="shadow-lg bg-black bg-opacity-45 md:rounded-2xl mx-auto min-h-screen md:min-h-max max-w-md p-6 space-y-6">
+    <div class="text-center space-y-2">
+      <div class="flex justify-center" [routerLink]="['/home']">
+        <img class="w-[90%] mx-auto" src="/assets/logo/goParkLogo.svg" alt="GoPark logo">
+      </div>
+      <h1 class="text-white text-3xl font-bold textShadow-05">Payment</h1>
+      <p class="text-white textShadow-03">Enter your payment details to complete the parking payment.</p>
+    </div>
+
+    <form class="space-y-4 text-white">
+      <div class="grid gap-2">
+        <label
+          class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+          for="license-plate"
+        >
+          License Plate
+        </label>
+        <input
+          class="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
+          id="license-plate"
+          placeholder="Enter your license plate"
+        />
+      </div>
+      <div class="grid gap-2">
+        <label
+          class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+          for="location"
+        >
+          Parking Location
+        </label>
+        <input
+          class="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
+          id="location"
+          placeholder="Enter the parking location"
+        />
+      </div>
+      <div class="grid gap-2">
+        <label
+          class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+          for="card-number"
+        >
+          Card Number
+        </label>
+        <input
+          class="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
+          id="card-number"
+          placeholder="Enter your card number"
+          type="number"
+        />
+      </div>
+      <div class="grid grid-cols-2 md:grid-cols-3 gap-2">
+        <div class="grid gap-2">
+          <label
+            class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+            for="expiry-date"
+          >
+            Expiry Date
+          </label>
+          <div class="flex gap-2">
+            <button
+              type="button"
+              role="combobox"
+              aria-controls="radix-:r2:"
+              aria-expanded="false"
+              aria-autocomplete="none"
+              dir="ltr"
+              data-state="closed"
+              data-placeholder=""
+              class="flex h-10 w-full items-center justify-between rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
+              id="expiry-month"
+            >
+              <span style="pointer-events: none;">MM</span>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                class="lucide lucide-chevron-down h-4 w-4 opacity-50"
+                aria-hidden="true"
+              >
+                <path d="m6 9 6 6 6-6"></path>
+              </svg>
+            </button>
+            <select
+              aria-hidden="true"
+              tabindex="-1"
+              style="position: absolute; border: 0px; width: 1px; height: 1px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; overflow-wrap: normal;"
+            >
+              <option value=""></option>
+              <option value="01">01</option>
+              <option value="02">02</option>
+              <option value="03">03</option>
+              <option value="04">04</option>
+              <option value="05">05</option>
+              <option value="06">06</option>
+              <option value="07">07</option>
+              <option value="08">08</option>
+              <option value="09">09</option>
+              <option value="10">10</option>
+              <option value="11">11</option>
+              <option value="12">12</option>
+            </select>
+            <button
+              type="button"
+              role="combobox"
+              aria-controls="radix-:rf:"
+              aria-expanded="false"
+              aria-autocomplete="none"
+              dir="ltr"
+              data-state="closed"
+              data-placeholder=""
+              class="flex h-10 w-full items-center justify-between rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
+              id="expiry-year"
+            >
+              <span style="pointer-events: none;">YY</span>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                class="lucide lucide-chevron-down h-4 w-4 opacity-50"
+                aria-hidden="true"
+              >
+                <path d="m6 9 6 6 6-6"></path>
+              </svg>
+            </button>
+            <select
+              aria-hidden="true"
+              tabindex="-1"
+              style="position: absolute; border: 0px; width: 1px; height: 1px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; overflow-wrap: normal;"
+            >
+              <option value=""></option>
+              <option value="23">23</option>
+              <option value="24">24</option>
+              <option value="25">25</option>
+              <option value="26">26</option>
+              <option value="27">27</option>
+              <option value="28">28</option>
+              <option value="29">29</option>
+              <option value="30">30</option>
+            </select>
+          </div>
+        </div>
+        <div class="grid gap-2">
+          <label
+            class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+            for="cvc"
+          >
+            CVC
+          </label>
+          <input
+            class="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
+            id="cvc"
+            placeholder="CVC"
+            type="number"
+          />
+        </div>
+        <div class="grid gap-2">
+          <label
+            class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+            for="amount"
+          >
+            Total Amount
+          </label>
+          <div class="block md:flex items-center gap-2">
+            <span class="block text-2xl font-bold">$12.50</span>
+            <span class="text-gray-500 dark:text-gray-400">for 2 hours</span>
+          </div>
+        </div>
+        <button
+          type="submit"
+          class="bg-[#40FF5E] hover:bg-[#39e554] text-white font-bold py-2 px-4 rounded inline-flex items-center justify-center w-full col-span-3"
+        >
+          Complete Payment
+        </button>
+      </div>
+    </form>
+
+  </div>
+
+</div>
