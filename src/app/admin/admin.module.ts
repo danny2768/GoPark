@@ -18,6 +18,10 @@ import { UserFormModalComponent } from './components/form-modal/user-form-modal.
 import { UsersComponent } from './pages/users/users.component';
 import { SpotSortByPipe } from './pipes/sort-by-spot.pipe';
 import { VehicleTypetoNamePipe } from './pipes/vehicleTypetoName.pipe';
+import { AdvancedPieChartComponent } from './components/advanced-pie-chart/advanced-pie-chart.component';
+import { NgxChartsModule } from '@swimlane/ngx-charts';
+import { PieGridChartComponent } from './components/pie-grid-chart/pie-grid-chart.component';
+import { NumberCardsChartComponent } from './components/number-cards-chart/number-cards-chart.component';
 
 
 @NgModule({
@@ -38,6 +42,9 @@ import { VehicleTypetoNamePipe } from './pipes/vehicleTypetoName.pipe';
     UserFormModalComponent,
     ParkingFormModalComponent,
     ParkingSpotsComponent,
+    AdvancedPieChartComponent,
+    PieGridChartComponent,
+    NumberCardsChartComponent,
   ],
   imports: [
     CommonModule,
@@ -45,6 +52,7 @@ import { VehicleTypetoNamePipe } from './pipes/vehicleTypetoName.pipe';
     SharedModule,
     FormsModule,
     ReactiveFormsModule,
+    NgxChartsModule,
   ],
   providers: [
     DatePipe,
