@@ -1,28 +1,114 @@
 <div class="home-background">
   <shared-nav-bar></shared-nav-bar>
 
-  <div class="flex">
+  <div class="flex flex-col sm:flex-row font-[Inter] mt-10 md:mt-0 items-center justify-center text-center h-4/6 w-[80%] mx-auto ">
     <!-- Title -->
-    <div class="font-[Inter] text-4xl text-white font-bold border border-blue-500">
+    <div class="text-4xl md:text-6xl text-white font-bold textShadow-08 mb-4 w-full sm:w-3/6">
       Pay for parking with ease
     </div>
     <!-- License plate -->
-    <div class="border border-green-400">
-      license plate placeholder
+    <div class="w-full sm:w-3/6 text-white">
+      <div class="w-full md:w-3/4 mx-auto shadow-lg bg-black bg-opacity-45 rounded-2xl">
+        <shared-car-info-form/>
+      </div>
     </div>
   </div>
-
 </div>
 
+<div class="w-[80%] mx-[10%] min-h-auto font-[Inter]">
+  <div class="block md:flex mt-20">
 
-<div class="pt-96 bg-black">Hola</div>
-<div class="pt-96 bg-black">Hola</div>
-<div class="pt-96 bg-black">Hola</div>
-<div class="pt-96 bg-black">Hola</div>
-<div class="pt-96 bg-black">Hola</div>
-<div class="pt-96 bg-black">Hola</div>
-<div class="pt-96 bg-black">Hola</div>
-<div class="pt-96 bg-black">Hola</div>
-<div class="pt-96 bg-black">Hola</div>
-<div class="pt-96 bg-black">Hola</div>
-<div class="pt-96 bg-black">Hola</div>
+    <!-- Left column -->
+    <div class="w-full md:w-2/5 mt-0 md:mt-16">
+      <!-- Title -->
+      <div class="w-full md:w-4/5 mx-auto text-4xl md:text-5xl text-center mb-12 textShadow-01">
+        The smarter way to park
+      </div>
+      <!-- Description -->
+      <div class="text-xl md:text-2xl text-center text-gray-500">
+        Pay for parking with ease. No more fumbling for change. No more waiting in line.
+      </div>
+    </div>
+
+    <!-- Right column -->
+    <div class="w-full md:w-3/5 mt-12 md:mt-0 flex flex-col md:flex-row justify-between ml-0 md:ml-16 gap-4 h-auto md:min-h-96">
+      <!-- Card 1 -->
+      <div class="flex flex-col justify-between items-center bg-[#40FF5E] bg-opacity-45 min-h-full flex-1 rounded-lg py-5 md:py-8">
+        <p class="text-center text-5xl font-[Faster-One]">1</p>
+        <p class="text-center font-bold text-lg my-4">Enter your location & license plate</p>
+        <img src="/assets/icons/license-plate-number-svgrepo-com.svg" alt="Logo 1" class="w-16 h-16">
+      </div>
+      <!-- Card 2 -->
+      <div class="flex flex-col justify-between items-center bg-[#40FF5E] bg-opacity-45 min-h-full flex-1 rounded-lg py-5 md:py-8">
+        <p class="text-center text-5xl font-[Faster-One]">2</p>
+        <p class="text-center font-bold text-lg my-4">Select your payment method</p>
+        <img src="/assets/icons/payment-credit-card-svgrepo-com.svg" alt="Logo 2" class="w-16 h-16">
+      </div>
+      <!-- Card 3 -->
+      <div class="flex flex-col justify-between items-center bg-[#40FF5E] bg-opacity-45 min-h-full flex-1 rounded-lg py-5 md:py-8">
+        <p class="text-center text-5xl font-[Faster-One]">3</p>
+        <p class="text-center font-bold text-lg my-4">Pay & go</p>
+        <img src="/assets/icons/car.png" alt="Logo 3" class="w-16 h-16">
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<div id="Pricing" class="font-[Inter] w-[80%] mx-[10%] min-h-auto mt-12 md:mt-28 mb-12 md:mb-32">
+  <!-- Heading -->
+  <div class="text-center">
+    <!-- title -->
+    <div class="text-4xl md:text-5xl font-bold textShadow-01">
+      Pricing
+    </div>
+    <!-- Description -->
+    <div class="mt-4 text-gray-500 text-lg md:text-xl">
+      Tailored solution for your business needs.
+    </div>
+  </div>
+  <!-- Cards -->
+  <div class="mt-12 flex flex-wrap justify-center gap-14">
+    <!-- Card 1 -->
+    <div class="rounded-lg p-8 md:p-10 card-shadow text-center max-w-sm w-[20rem]">
+      <div class="font-bold text-xl md:text-2xl mb-6">Business Starter</div>
+      <div class="font-[Faster-One] text-[#40FF5E] text-3xl md:text-4xl">$ 9.99</div>
+      <div class="text-gray-700 mb-12">per month</div>
+      <!-- Action button -->
+      <!-- TODO: implement action buttons -->
+      <div class="flex gap-2 justify-center mt-4">
+        <button class="bg-gradient-to-r from-black to-[#3E4A3D] text-[#40FF5E] font-bold py-2 px-4 rounded">
+          Contact Sales
+        </button>
+      </div>
+    </div>
+
+    <!-- Card 2 -->
+    <div class="rounded-lg p-8 md:p-10 card-shadow text-center max-w-sm w-[20rem]">
+      <div class="font-bold text-xl md:text-2xl mb-6">Business Standard</div>
+      <div class="font-[Faster-One] text-[#40FF5E] text-3xl md:text-4xl">$ 14.99</div>
+      <div class="text-gray-700 mb-12">per month</div>
+      <!-- Action button -->
+      <!-- TODO: implement action buttons -->
+      <div class="flex gap-2 justify-center mt-4">
+        <button class="bg-gradient-to-r from-black to-[#3E4A3D] text-[#40FF5E] font-bold py-2 px-4 rounded">
+          Contact Sales
+        </button>
+      </div>
+    </div>
+
+    <!-- Card 3 -->
+    <div class="rounded-lg p-8 md:p-10 card-shadow text-center max-w-sm w-[20rem]">
+      <div class="font-bold text-xl md:text-2xl mb-6">Enterprise</div>
+      <div class="font-[Faster-One] text-[#40FF5E] text-3xl md:text-4xl">$ 19.99</div>
+      <div class="text-gray-700 mb-12">per month</div>
+      <!-- Action button -->
+      <!-- TODO: implement action buttons -->
+      <div class="flex gap-2 justify-center mt-4">
+        <button class="bg-gradient-to-r from-black to-[#3E4A3D] text-[#40FF5E] font-bold py-2 px-4 rounded">
+          Contact Sales
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

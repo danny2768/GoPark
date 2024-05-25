@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { HomePageComponent } from './shared/pages/home-page/home-page.component';
 import { authGuard } from './auth/guards/auth.guard';
+import { PaymentPageComponent } from './shared/pages/payment-page/payment-page.component';
 
 const routes: Routes = [
   {
@@ -16,6 +17,10 @@ const routes: Routes = [
   {
     path: 'home',
     component: HomePageComponent,
+  },
+  {
+    path: 'payment',
+    component: PaymentPageComponent,
   },
   {
     path: '**',
