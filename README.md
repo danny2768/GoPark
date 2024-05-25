@@ -1,6 +1,8 @@
 # GoPark
 
-GoPark is a parking management application built with Angular. This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 17.0.10.
+GoPark is your go-to solution for hassle-free parking payments. Say goodbye to fumbling for coins or dealing with outdated payment machines. With GoPark, you can conveniently pay for your parking time using your smartphone, making the entire process seamless and stress-free.
+
+This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 17.0.10.
 
 ## Prerequisites
 
