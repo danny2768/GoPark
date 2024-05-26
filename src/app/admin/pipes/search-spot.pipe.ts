@@ -1,5 +1,5 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { Spot } from '../interfaces/spot.interface';
+import { Spot } from '../../shared/interfaces/spot.interface';
 import { DatePipe } from '@angular/common';
 import { VehicleTypetoNamePipe } from './vehicleTypetoName.pipe';
 

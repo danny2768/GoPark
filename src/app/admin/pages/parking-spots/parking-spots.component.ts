@@ -2,7 +2,7 @@ import { Component, OnDestroy, OnInit, Pipe } from '@angular/core';
 import { catchError, of, Subscription, switchMap, tap } from 'rxjs';
 import { AdminService } from '../../services/admin.service';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Spot } from '../../interfaces/spot.interface';
+import { Spot } from '../../../shared/interfaces/spot.interface';
 
 @Component({
   selector: 'app-parking-spots',

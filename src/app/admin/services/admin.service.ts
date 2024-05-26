@@ -4,7 +4,7 @@ import { HttpClient } from '@angular/common/http';
 import { Token, User } from '../../shared/interfaces';
 import { catchError, map, Observable, of } from 'rxjs';
 import { Parking } from '../../shared/interfaces/parking.interface';
-import { Spot } from '../interfaces/spot.interface';
+import { Spot } from '../../shared/interfaces/spot.interface';
 
 @Injectable({
   providedIn: 'root'

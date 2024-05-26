@@ -1,4 +1,7 @@
 <div class="background md:pt-3">
+  @if (dialogInfo.showDialog) {
+    <shared-modal-dialog [title]="dialogInfo.title" [description]="dialogInfo.description" (closeEvent)="onDialogClose()"></shared-modal-dialog>
+  }
   <div class="shadow-lg bg-black bg-opacity-45 md:rounded-2xl mx-auto min-h-screen md:min-h-max max-w-md p-6 space-y-6">
     <div class="text-center space-y-2">
       <div class="flex justify-center" [routerLink]="['/home']">
@@ -8,47 +11,89 @@
       <p class="text-white textShadow-03">Enter your payment details to complete the parking payment.</p>
     </div>
 
-    <form class="space-y-4 text-white">
+    <form [formGroup]="myForm" (ngSubmit)="onSubmit()" class="space-y-4 text-white">
+
+      <!-- License plate -->
       <div class="grid gap-2">
-        <label
-          class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
-          for="license-plate"
-        >
-          License Plate
-        </label>
+
+        <div class="flex justify-between items-center py-1">
+          <label
+            class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+            for="license-plate"
+          >
+            License Plate
+          </label>
+          <span
+            *ngIf="isFieldInvalid('licensePlate')"
+            class="text-sm font-medium text-red-500 italic"
+          >
+            *{{ getFieldError("licensePlate") }}
+          </span>
+        </div>
+
         <input
-          class="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
           id="license-plate"
+          type="text"
           placeholder="Enter your license plate"
+          formControlName="licensePlate"
+          class="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 text-black "
+          (keyup)="formatLicensePlate($event)"
         />
       </div>
+
+      <!-- Parking location -->
       <div class="grid gap-2">
         <label
           class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
-          for="location"
+          for="parkingId"
         >
           Parking Location
         </label>
-        <input
-          class="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
-          id="location"
-          placeholder="Enter the parking location"
-        />
+        <div class="relative">
+          <select
+            id="parkingId"
+            class="appearance-none px-3 py-2 rounded-md shadow-md w-full bg-white text-sm border border-input file:border-0"
+            [ngClass]="{'text-[#A1A8B3]': myForm.controls['parkingId'].value == '',
+                        'text-black': myForm.controls['parkingId'].value != ''}"
+            formControlName="parkingId"
+          >
+            <option value="" disabled selected>Select your location</option>
+            <option class="text-black" *ngFor="let parking of parkings" [value]="parking.id">
+              {{ parking.location }}
+            </option>
+          </select>
+          <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
+            <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M10 12l-6-6h12"/></svg>
+          </div>
+        </div>
       </div>
+
+      <!-- Card Number -->
       <div class="grid gap-2">
-        <label
-          class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
-          for="card-number"
-        >
-          Card Number
-        </label>
+        <div class="flex justify-between items-center py-1">
+          <label
+            class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+            for="cardNumber"
+          >
+            Card Number
+          </label>
+          <span
+            *ngIf="isFieldInvalid('cardNumber')"
+            class="text-sm font-medium text-red-500 italic"
+          >
+            *{{ getFieldError("cardNumber") }}
+          </span>
+        </div>
         <input
-          class="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
-          id="card-number"
-          placeholder="Enter your card number"
+          id="cardNumber"
           type="number"
+          placeholder="Enter your card number"
+          formControlName="cardNumber"
+          class="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 text-black "
         />
       </div>
+
+      <!-- Expiry date -->
       <div class="grid grid-cols-2 md:grid-cols-3 gap-2">
         <div class="grid gap-2">
           <label
@@ -58,100 +103,56 @@
             Expiry Date
           </label>
           <div class="flex gap-2">
-            <button
-              type="button"
-              role="combobox"
-              aria-controls="radix-:r2:"
-              aria-expanded="false"
-              aria-autocomplete="none"
-              dir="ltr"
-              data-state="closed"
-              data-placeholder=""
-              class="flex h-10 w-full items-center justify-between rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
-              id="expiry-month"
-            >
-              <span style="pointer-events: none;">MM</span>
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="24"
-                height="24"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="2"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                class="lucide lucide-chevron-down h-4 w-4 opacity-50"
-                aria-hidden="true"
+            <div class="relative w-full">
+              <select
+                id="expiry-month"
+                class="appearance-none bg-white px-2 py-2 rounded-md shadow-md w-full text-sm border border-input text-black"
+                [ngClass]="{'text-[#A1A8B3]': myForm.controls['parkingId'].value == '', 'text-black': myForm.controls['parkingId'].value != ''}"
               >
-                <path d="m6 9 6 6 6-6"></path>
-              </svg>
-            </button>
-            <select
-              aria-hidden="true"
-              tabindex="-1"
-              style="position: absolute; border: 0px; width: 1px; height: 1px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; overflow-wrap: normal;"
-            >
-              <option value=""></option>
-              <option value="01">01</option>
-              <option value="02">02</option>
-              <option value="03">03</option>
-              <option value="04">04</option>
-              <option value="05">05</option>
-              <option value="06">06</option>
-              <option value="07">07</option>
-              <option value="08">08</option>
-              <option value="09">09</option>
-              <option value="10">10</option>
-              <option value="11">11</option>
-              <option value="12">12</option>
-            </select>
-            <button
-              type="button"
-              role="combobox"
-              aria-controls="radix-:rf:"
-              aria-expanded="false"
-              aria-autocomplete="none"
-              dir="ltr"
-              data-state="closed"
-              data-placeholder=""
-              class="flex h-10 w-full items-center justify-between rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
-              id="expiry-year"
-            >
-              <span style="pointer-events: none;">YY</span>
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="24"
-                height="24"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="2"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                class="lucide lucide-chevron-down h-4 w-4 opacity-50"
-                aria-hidden="true"
+                <option value="">MM</option>
+                <option value="01">01</option>
+                <option value="02">02</option>
+                <option value="03">03</option>
+                <option value="04">04</option>
+                <option value="05">05</option>
+                <option value="06">06</option>
+                <option value="07">07</option>
+                <option value="08">08</option>
+                <option value="09">09</option>
+                <option value="10">10</option>
+                <option value="11">11</option>
+                <option value="12">12</option>
+              </select>
+
+              <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
+                <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M10 12l-6-6h12"/></svg>
+              </div>
+            </div>
+
+            <div class="relative w-full">
+              <select
+                id="expiry-year"
+                class="appearance-none bg-white px-3 py-2 rounded-md shadow-md w-full text-sm border border-input text-black"
+                [ngClass]="{'text-[#A1A8B3]': myForm.controls['parkingId'].value == '', 'text-black': myForm.controls['parkingId'].value != ''}"
               >
-                <path d="m6 9 6 6 6-6"></path>
-              </svg>
-            </button>
-            <select
-              aria-hidden="true"
-              tabindex="-1"
-              style="position: absolute; border: 0px; width: 1px; height: 1px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; overflow-wrap: normal;"
-            >
-              <option value=""></option>
-              <option value="23">23</option>
-              <option value="24">24</option>
-              <option value="25">25</option>
-              <option value="26">26</option>
-              <option value="27">27</option>
-              <option value="28">28</option>
-              <option value="29">29</option>
-              <option value="30">30</option>
-            </select>
+                <option value="">YY</option>
+                <option value="23">23</option>
+                <option value="24">24</option>
+                <option value="25">25</option>
+                <option value="26">26</option>
+                <option value="27">27</option>
+                <option value="28">28</option>
+                <option value="29">29</option>
+                <option value="30">30</option>
+              </select>
+
+              <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
+                <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M10 12l-6-6h12"/></svg>
+              </div>
+            </div>
           </div>
         </div>
+
         <div class="grid gap-2">
           <label
             class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
@@ -174,7 +175,7 @@
             Total Amount
           </label>
           <div class="block md:flex items-center gap-2">
-            <span class="block text-2xl font-bold">$12.50</span>
+            <span class="block text-2xl font-bold">$3.500</span>
             <span class="text-gray-500 dark:text-gray-400">for 2 hours</span>
           </div>
         </div>
