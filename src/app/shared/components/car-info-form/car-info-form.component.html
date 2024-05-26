@@ -1,0 +1,57 @@
+<form [formGroup]="myForm" (ngSubmit)="onSubmit()" class="w-full p-4">
+
+  <!-- Location -->
+  <div class="relative mb-6">
+    <div class="mb-4 relative">
+      <select
+        id="location"
+        class="bg-[#EAF0F7] p-3 rounded shadow-md w-full appearance-none"
+        [ngClass]="{'text-[#B1B1B1]': myForm.controls['location'].value == '', 'text-black': myForm.controls['location'].value != ''}"
+        formControlName="location"
+      >
+        <option value="" disabled selected>Select your location</option>
+        <option class="text-black" *ngFor="let parking of parkings" [value]="parking.id">
+          {{ parking.location }}
+        </option>
+      </select>
+      <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
+        <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M10 12l-6-6h12"/></svg>
+      </div>
+    </div>
+    <div class="absolute bottom-0 right-0">
+      <span
+        *ngIf="isFieldInvalid('location')"
+        class="text-sm text-red-500 italic mr-4 md:mr-8"
+      >
+        *{{ getFieldError("location") }}
+      </span>
+    </div>
+  </div>
+
+  <!-- License Plate -->
+  <div class="relative ">
+    <input
+      id="licensePlate"
+      type="text"
+      placeholder="Enter License Plate"
+      class="bg-[#EAF0F7] p-3 rounded shadow-md w-full text-black"
+      formControlName="licensePlate"
+      (keyup)="formatLicensePlate($event)"
+    />
+    <div class="absolute bottom-0 right-0">
+      <span
+        *ngIf="isFieldInvalid('licensePlate')"
+        class="text-sm text-red-500 italic mr-4 md:mr-8"
+      >
+        *{{ getFieldError("licensePlate") }}
+      </span>
+    </div>
+  </div>
+
+  <div class="mt-6">
+    <button type="submit" class="bg-[#39e554] hover:bg-[#33cc4b] text-white font-bold py-2 px-4 rounded w-full textShadow-03">
+      Submit
+    </button>
+  </div>
+
+</form>

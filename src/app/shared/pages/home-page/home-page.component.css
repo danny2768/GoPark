@@ -1,0 +1,20 @@
+.home-background {
+  width: 100vw;
+  height: 100vh;
+  background-size: cover; /* or "contain" depending on what you want */
+  background-position: center center; /* Center the image */
+  background-repeat: no-repeat; /* Do not repeat the image */
+  background-image: url('/assets/background/sven-mieke-lOgR82HSQKM-unsplash.jpg')
+}
+
+.textShadow-08 {
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+}
+
+.textShadow-02 {
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.card-shadow {
+  box-shadow: 0 0 12px rgba(0, 0, 0, 0.25);
+}

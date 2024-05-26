@@ -1,0 +1,13 @@
+select {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+}
+
+input::placeholder {
+  color: #B1B1B1;
+}
+
+.textShadow-03 {
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
