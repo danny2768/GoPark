@@ -1,12 +1,12 @@
-// TODO: add the missing fields
 export const environments = {
-  baseUrl: 'https://',
+  baseUrl: 'http://184.72.102.135:8080',
+  paymentsBaseUrl: 'http://184.72.102.135:8081',
   vehicleTypes: {
-    19: 'Car',
-    25: 'Motorcycle',
+    5: 'Car',
+    4: 'Motorcycle',
   },
   roleTypes: {
-    1: 'Admin',
-    2: 'Super Admin',
+    2: 'Admin',
+    1: 'Super Admin',
   }
 }
