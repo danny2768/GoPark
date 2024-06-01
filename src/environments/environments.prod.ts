@@ -1,6 +1,6 @@
 export const environments = {
-  baseUrl: 'http://184.72.102.135:8080',
-  paymentsBaseUrl: 'http://184.72.102.135:8081',
+  baseUrl: 'https://gopark-core.up.railway.app',
+  paymentsBaseUrl: 'https://gopark-payments.up.railway.app',
   vehicleTypes: {
     5: 'Car',
     4: 'Motorcycle',
